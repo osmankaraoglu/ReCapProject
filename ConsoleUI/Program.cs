@@ -23,13 +23,9 @@ namespace ConsoleUI
 
             Car car2 = new Car();
             car2.Id = 3;
-            car2.BrandId = 3;
             car2.ColorId = 2;
-            car2.FuelTypeId = 1;
             car2.Name = "BMW M5";
-            car2.ModelYear = 2016;
             car2.DailyPrice = 500;
-            car2.Description = "Manuel Vites";
 
             
 
@@ -39,7 +35,7 @@ namespace ConsoleUI
             }
             Console.WriteLine();
 
-            Console.WriteLine(carManager.GetById(2).Name);
+            Console.WriteLine(carManager.GetById(3).FuelTypeId);
             Console.WriteLine();
 
             carManager.Add(car1);
