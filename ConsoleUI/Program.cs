@@ -1,4 +1,5 @@
 ﻿using Business.Concrate;
+using DataAccess.Concrate.EntityFramework;
 using DataAccess.Concrate.InMemory;
 using Entities.Concrate;
 using System;
@@ -9,25 +10,11 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new InMemoryCarDal());
+            //Car car1 = new Car { Name = "411", BrandId = 3, ColorId = 1, FuelTypeId = 2, DailyPrice = 15, ModelYear = 2015, Description = "otomatik" };
 
-            Car car1 = new Car();
-            car1.Id = 9;
-            car1.BrandId = 6;
-            car1.ColorId = 3;
-            car1.FuelTypeId = 1;
-            car1.Name = "Porche Cayenne";
-            car1.ModelYear = 2016;
-            car1.DailyPrice = 440;
-            car1.Description = "Otomatik Vites";
-
-            Car car2 = new Car();
-            car2.Id = 3;
-            car2.ColorId = 2;
-            car2.Name = "BMW M5";
-            car2.DailyPrice = 500;
-
-            
+            CarManager carManager = new CarManager(new EfCarDal());
+            //carManager.Add(car1);
+            //carManager.Delete(new Car { Id = 5});
 
             foreach (var car in carManager.GetAll())
             {
@@ -35,16 +22,20 @@ namespace ConsoleUI
             }
             Console.WriteLine();
 
-            Console.WriteLine(carManager.GetById(3).FuelTypeId);
-            Console.WriteLine();
-
-            carManager.Add(car1);
-            carManager.Update(car2);
-            carManager.Delete(new Car { Id = 1 });
-
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetByFuelType(4))
             {
                 Console.WriteLine(car.Name);
+            }
+            Console.WriteLine();
+
+            foreach (var car in carManager.GetByDailyPrice(500, 1000))
+            {
+                Console.WriteLine(car.Name);
+            }
+            Console.WriteLine();
+            foreach (var car in carManager.GetAll())
+            {
+                Console.WriteLine(car.Id);
             }
             Console.WriteLine();
 
