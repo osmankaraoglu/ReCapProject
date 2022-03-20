@@ -1,4 +1,4 @@
-﻿using Entities.Concrate;
+﻿using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Concrate.EntityFramework
+namespace DataAccess.Concrete.EntityFramework
 {
     public class ReCapProjectDBContext : DbContext
     {
@@ -15,9 +15,9 @@ namespace DataAccess.Concrate.EntityFramework
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database = ReCapProjectDB;Trusted_Connection=true");
         }
 
-        DbSet<Car> Cars { get; set; }
-        DbSet<Brand> Brands { get; set; }
-        DbSet<Color> Colors { get; set; }
-        DbSet<Fuel> FuelsType { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<Fuel> FuelType { get; set; }
     }
 }

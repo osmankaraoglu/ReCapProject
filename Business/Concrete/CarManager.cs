@@ -1,13 +1,14 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
-using Entities.Concrate;
+using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Concrate
+namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
@@ -62,6 +63,11 @@ namespace Business.Concrate
         public List<Car> GetByFuelType(int id)
         {
             return _carDal.GetAll(c => c.FuelTypeId == id);
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            return _carDal.GetCarDetails();
         }
     }
 }

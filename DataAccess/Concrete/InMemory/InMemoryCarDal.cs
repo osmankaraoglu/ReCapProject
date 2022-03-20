@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
-using Entities.Concrate;
+using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Concrate.InMemory
+namespace DataAccess.Concrete.InMemory
 {
     public class InMemoryCarDal : ICarDal
     {
@@ -66,6 +67,16 @@ namespace DataAccess.Concrate.InMemory
         public Car GetById(int carId)
         {
             return _cars.SingleOrDefault(c => c.Id == carId);
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailDto> GetProductDetails()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Car car)
