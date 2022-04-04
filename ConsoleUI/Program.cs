@@ -57,7 +57,7 @@ namespace ConsoleUI
             }
             Console.WriteLine();
 
-            foreach (var car in carManager.GetByFuelType(4).Data)
+            foreach (var car in carManager.GetByFuelTypeId(4).Data)
             {
                 Console.WriteLine(car.Name);
             }

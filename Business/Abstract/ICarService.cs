@@ -1,4 +1,4 @@
-﻿using Core.Utilities;
+﻿using Core.Utilities.Results;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -16,10 +16,10 @@ namespace Business.Abstract
         IResult Update(Car car);
         IDataResult<List<Car>> GetAll();
         IDataResult<Car> GetById(int id);
-        IDataResult<List<Car>> GetByAllBrandId(int id);
+        IDataResult<List<Car>> GetByBrandId(int id);
         IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max);
-        IDataResult<List<Car>> GetByAllColor(int id);
-        IDataResult<List<Car>> GetByFuelType(int id);
+        IDataResult<List<Car>> GetByColorId(int id);
+        IDataResult<List<Car>> GetByFuelTypeId(int id);
         IDataResult<List<CarDetailDto>> GetCarDetails();
 
     }

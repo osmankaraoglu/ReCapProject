@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
-using Core.Utilities;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -22,12 +22,13 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
-            if (car.Name.Length >= 2)
+            if (car.Name.Length > 2)
             {
-                return new ErrorResult(Messages.CarNameInValid);
+                _carDal.Add(car);
+                return new SuccessResult(Messages.CarAdded);
+                
             }
-            _carDal.Add(car);
-            return new SuccessResult(Messages.CarAdded);
+            return new ErrorResult(Messages.CarNameInValid);
         }
 
         public IResult Delete(Car car)
@@ -43,15 +44,15 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll());
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
         }
 
-        public IDataResult<List<Car>> GetByAllBrandId(int id)
+        public IDataResult<List<Car>> GetByBrandId(int id)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id));
         }
 
-        public IDataResult<List<Car>> GetByAllColor(int id)
+        public IDataResult<List<Car>> GetByColorId(int id)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id));
         }
@@ -61,7 +62,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => (c.DailyPrice >= min && c.DailyPrice <= max)));
         }
 
-        public IDataResult<List<Car>> GetByFuelType(int id)
+        public IDataResult<List<Car>> GetByFuelTypeId(int id)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.FuelTypeId == id));
         }
