@@ -54,5 +54,10 @@ namespace Business.Constants
         public static string RentalUpdatedReturnDate = "Araç Teslim Alındı.";
         public static string RentalUpdatedReturnDateError = "Araç Zaten Teslim Alındı.";
 
+        //Car Image Messages
+        public static string ImageAdded = "Resim başarıyla yüklendi.";
+        public static string ImageDeleted = "Resim silindi.";
+        public static string ImageUpdated = "Resim Güncellendi.";
+        public static string ImageAddedError = "Bir arabanın 5'den fazla resmi olamaz.";
     }
 }
