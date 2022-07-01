@@ -21,14 +21,13 @@ namespace Business.Concrete
         }
         public IResult Add(Rental rental)
         {
-            var returnDate = CheckReturnDate(rental.CarId);
-            if (returnDate.Success)
+            var carToReturn = _rentalDal.Get(r => r.CarId == rental.CarId);
+            if (carToReturn != null && carToReturn.ReturnDate > DateTime.Now)
             {
-                _rentalDal.Add(rental);
-                return new SuccessResult(Messages.RentalAdded);
+                return new ErrorResult(Messages.RentalAddedError);
             }
-            return new ErrorResult(Messages.RentalAddedError);
-
+            _rentalDal.Add(rental);
+            return new SuccessResult(Messages.RentalAdded);
         }
 
         public IResult Delete(Rental rental)
@@ -54,17 +53,6 @@ namespace Business.Concrete
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails());
-        }
-
-        public IResult CheckReturnDate(int carId)
-        {
-            var car = _rentalDal.Get(c => c.CarId == carId);
-            if(car.ReturnDate == null)
-            {
-                return new SuccessResult();
-            }
-            
-            return new ErrorResult();
         }
     }
 }
